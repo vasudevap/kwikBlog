@@ -2,19 +2,19 @@
     {
         "posttitle": "Passing the test!",
         "postbody": "One of the key ingredients to a coder's success is how well their code performs as per specifications.  A way to guarantee that is through test cases that can be run by coders to determine if it is as per specifications.  Coders should forever strive to the golden standard of having established test cases to serve as specifications.  Using a library like JEST to create such test cases would be considerably better than having to read through pages of documented requirements and understand what must be coded towards.",
-        "postdate": "45189",
+        "postdate": "2023-09-20",
         "user_id": "1"
     },
     {
         "posttitle": "Scripting or Programming?",
         "postbody": "Purists stand adamand that JS is just a scripting language as opposed to a proper programing language like Java or C#.  To prove their point, they point to the fact that Javascript runs line by line as a script rather than the way other languages get compiled and allocated space prior to execution.  However, in application and outcome, JavaScript proves this to be a distinction without a difference.",
-        "postdate": "45204",
+        "postdate": "2023-10-05",
         "user_id": "2"
     },
     {
         "posttitle": "Does Tailwind harken the end of Bootstrap",
         "postbody": "CSS frameworks are a dime a dozen!  What distinguishes many in today's day is the community following they have garnered and for aspiring coding career-ists, picking up nomenclature of popular frameworks serves them a job in an organization that is an adopter of such a framework.  The battle is tough between Tailwind, the inline CSS guru, and Bootstrap, a true CSS framework goliath.  Bootstraps early adoption and huge community support gives it an edge when considering popularity as a primary factor - and yes, it is that in the coding world.  Yet, Tailwind offers something unique to programmers - more control - and this is why it is firmly planted in its niche and continues to threaten Bootstrap's market share as new projects look to adopt a more unique look and distinguish themselves from the often-templated look and feel of Bootstrap'd websites.",
-        "postdate": "45212",
+        "postdate": "2023-10-13",
         "user_id": "3"
     }
 ]
