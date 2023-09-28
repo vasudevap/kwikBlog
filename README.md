@@ -1,4 +1,4 @@
-# 14 Model-View-Controller (MVC): Tech Blog
+# Model-View-Controller (MVC): Tech Blog
 
 We know you want to be writing about tech!  You spend plenty of time creating new applications and debugging existing codebases, but most of you also spend at least some of your time reading and writing about technical concepts, recent advancements, and new technologies.
 
