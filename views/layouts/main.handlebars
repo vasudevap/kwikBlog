@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kwikBlog</title>
+    <!-- Include Bootstrap CSS (for modal styles) -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/style.css">
+
+
+</head>
+
+<body>
+    <div class="flex-column justify-space-around">
+        <header class="display-flex justify-space-between align-center p-2">
+            <div>
+                <div class="btn-group" role="group" aria-label="Top Menu">
+                    <button type="button" class="btn btn-primary">Home</button>
+                    <button type="button" class="btn btn-primary">Dashboard</button>
+                    <!-- Conditionally render login link -->
+                    {{#unless loggedIn}}
+                    <button type="button" class="btn btn-primary">Login</button>
+                    {{/unless}}
+                    <button type="button" class="btn btn-primary">Logout</button>
+                </div>
+                <div class="m-2 inline place-items-center">
+                    <h1 class=" inline-block text-6xl">
+                        <a href="/">kwikBlog</a>
+                    </h1>
+                </div>
+            </div>
+        </header>
+
+        <div class=" space-y-8">
+            <main class="container container-fluid mt-5">
+                <!-- Render the sub layout -->
+                {{{ body }}}
+            </main>
+
+            <footer class="container-fluid">
+                <p class="bg-gray-300 p-10 bg-4 text-center text-3xl "> kwikBlog is made with &#x2764;&#xFE0F; by PV</p>
+            </footer>
+        </div>
+
+    </div>
+
+    <!-- Render script for logged in users only -->
+    {{!-- {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}} --}}
+</body>
+
+</html>
