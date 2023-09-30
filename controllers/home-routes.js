@@ -8,10 +8,14 @@ const { User, BlogPost } = require('../models');
 router.get('/', async (req, res) => {
     // Get all BlogPosts and JOIN with user data
     BlogPost.findAll()
-        .then((blogPosts) => {
+        .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
-            const blogPost = blogPosts.map((bp) => bp.get({ plain: true }));
-            res.status(200).json(blogPost);
+            const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
+            // Pass serialized data and session flag into template
+            res.render('homepage', {
+                blogPosts,
+                loggedIn: req.session.loggedIn
+            });
         })
         .catch((err) => res.status(400).json(err))
 });
