@@ -11,7 +11,6 @@ router.get('/', async (req, res) => {
         .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            // Pass serialized data and session flag into template
             res.render('homepage', {
                 blogPosts,
                 loggedIn: req.session.loggedIn
@@ -20,4 +19,13 @@ router.get('/', async (req, res) => {
         .catch((err) => res.status(400).json(err))
 });
 
+// GET User dashboard
+router.get('/dashboard', (req, res) => {
+    // If the user is already logged in, redirect the request to another route
+    // if (req.session.loggedIn) {
+    //   res.redirect('/profile');
+    //   return;
+    // }
+    res.render('login');
+});
 module.exports = router;
