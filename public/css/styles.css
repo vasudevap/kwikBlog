@@ -1,0 +1,31 @@
+  .pv-btn-title {
+      background-color: #DCEDC8;
+      border: #3E2723;
+      border-radius: 10px;
+      color: #3E2723;
+      padding: 3px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 35px;
+      font-weight: bolder;
+      box-shadow: 6px 6px grey;
+  }
+
+  .pv-nav {
+      color: #DCEDC8;
+      font-size: 25px;
+      padding-right: 40px;
+      padding-bottom: 20px;
+  }
+
+  .pv-nav:hover {
+    color: #DCEDC8;
+    text-decoration: none;
+}
+
+  .pv-header, .pv-footer {
+      background-color: #3E2723;
+      padding: 20px 50px;
+      color: #DCEDC8;
+  }
