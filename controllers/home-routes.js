@@ -13,7 +13,8 @@ router.get('/', async (req, res) => {
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
             res.render('homepage', {
                 blogPosts,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn,
+                pagetitle: "kwikBlog"
             });
         })
         .catch((err) => res.status(400).json(err))
@@ -21,11 +22,37 @@ router.get('/', async (req, res) => {
 
 // GET User dashboard
 router.get('/dashboard', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
-    // if (req.session.loggedIn) {
-    //   res.redirect('/profile');
-    //   return;
-    // }
-    res.render('login');
+    // If the user is already logged in, show their blog posts
+    if (req.session.userId) {
+        // Get user's own BlogPosts 
+        BlogPost.findAll({
+            where: {
+                userId: req.session.userId
+            }
+        })
+            .then((userblogPostsFromDB) => {
+                // Serialize data so the template can read it
+                const userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
+                res.render('dashboard', {
+                    userblogPosts,
+                    loggedIn: req.session.loggedIn,
+                    pagetitle: "dashboard"
+                });
+            })
+            .catch((err) => res.status(400).json(err))
+    } else {
+        res.redirect('/login');
+    }
 });
+
+router.get('/login', (req, res) => {
+    res.render('login', {
+        loggedIn: req.session.loggedIn,
+        pagetitle: "login"
+    });
+});
+
+router.get('/logout', (req, res) => {
+    
+})
 module.exports = router;
