@@ -5,35 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kwikBlog</title>
-    <!-- Include Bootstrap CSS (for modal styles) -->
+    <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include own CSS for customization -->
     <link href="/css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container-fluid " style="background-color:#DCEDC8">
-                <header class="pv-header">
-                    <nav class="nav nav-pills flex-column flex-sm-row pv-nav">
-                                <a class="flex-sm-fill text-sm-center nav-link pv-nav" href="/">Home</a>
-                                <a class="flex-sm-fill text-sm-center nav-link pv-nav" href="/dashboard">Dashboard</a>
-                            {{#unless loggedIn}}
-                                <a class="flex-sm-fill text-sm-center nav-link pv-nav" href="/login">Login</a>
-                            {{/unless}}
-                                <a id="logout" class="flex-sm-fill text-sm-center nav-link pv-nav" href="/logout">Logout</a>
-                    </nav>
-                </header>
-                <div >
-                    <main class="container container-fluid m-100">
-                        <!-- Render the sub layout -->
-                        {{{ body }}}
-                    </main>
-
-                    <footer class="container-fluid pv-footer">
-                        <p class="bg-gray-300 p-10 bg-4 text-center text-3xl "> kwikBlog is made with &#x2764;&#xFE0F;
-                            by PV
-                        </p>
-                    </footer>
-                </div>
+    <div style="background-color:#DCEDC8">
+        <header class="pv-header">
+            <nav class="nav nav-pills flex-column flex-sm-row pv-nav">
+                <a class="flex-sm-fill text-sm-center nav-link pv-nav" href="/">Home</a>
+                <a class="flex-sm-fill text-sm-center nav-link pv-nav" href="/dashboard">Dashboard</a>
+                {{#unless loggedIn}}
+                <a class="flex-sm-fill text-sm-center nav-link pv-nav" href="/login">Login</a>
+                {{/unless}}
+                <a id="logout" class="flex-sm-fill text-sm-center nav-link pv-nav" href="/logout">Logout</a>
+            </nav>
+        </header>
+        <main >
+            <!-- Render the sub layout -->
+            {{{ body }}}
+        </main>
+        <footer class="pv-footer">
+            <p class="bg-gray-300 p-10 bg-4 text-center text-3xl "> kwikBlog is made with &#x2764;&#xFE0F;
+                by PV
+            </p>
+        </footer>
     </div>
     <!-- Render script for logged in users only -->
     {{#if loggedIn}}
