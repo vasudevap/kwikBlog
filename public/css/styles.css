@@ -16,16 +16,39 @@
       color: #DCEDC8;
       font-size: 25px;
       padding-right: 40px;
-      padding-bottom: 20px;
   }
 
   .pv-nav:hover {
-    color: #DCEDC8;
-    text-decoration: none;
-}
+      color: #DCEDC8;
+      text-decoration: none;
+  }
 
-  .pv-header, .pv-footer {
+  .pv-header,
+  .pv-footer,
+  .pv-title {
       background-color: #3E2723;
       padding: 20px 50px;
       color: #DCEDC8;
+  }
+
+  .blogcard {
+      margin: 50px;
+  }
+
+  .blogcard-header {
+      border: 1rem solid #3E2723;
+      background-color: #3E2723;
+      padding: 5px 15px;
+      color: #DCEDC8;
+      font-size: larger;
+      font-weight: bold;
+  }
+
+  .blogcard-body {
+      border: .3rem solid #3E2723;
+      /* background-color: #DCEDC8; */
+      padding: 10px 15px;
+      color: #3E2723;
+      /* font-size: larger; */
+      /* font-weight: bold; */
   }
