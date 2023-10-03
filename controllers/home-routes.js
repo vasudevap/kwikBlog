@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 // GET /dashboard for User
 router.get('/dashboard', (req, res) => {
     // If the user is already logged in, show their blog posts
-    if (req.session.userId) {
+    if (req.session.loggedIn) {
         // Get user's own BlogPosts 
         BlogPost.findAll({
             where: {
@@ -51,12 +51,12 @@ router.get('/login', (req, res) => {
     // if user is already logged in
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
-        return;
       }
 
     // create the login partial view
     res.render('login', {
         pagetitle: "kwikBlog",
+        formType: 'loginForm',
         boxTitle: 'Login',
         boxButtonText: 'Login!',
         boxSwapLink: '/signup',
@@ -68,8 +68,9 @@ router.get('/login', (req, res) => {
 // GET /signup page
 router.get('/signup', (req, res) => {
 
-    res.render('loginsignup', {
+    res.render('login', {
         pagetitle: "kwikBlog",
+        formType: 'signupForm',
         boxTitle: 'Sign Up',
         boxButtonText: 'Sign Up!',
         boxSwapLink: '/login',
