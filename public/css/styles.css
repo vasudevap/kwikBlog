@@ -7,15 +7,15 @@
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 35px;
+      font-size: 26pt;
       font-weight: bolder;
       box-shadow: 6px 6px grey;
   }
 
   .pv-nav {
       color: #DCEDC8;
-      font-size: 25px;
-      padding-right: 40px;
+      font-size: 14pt;
+      padding: 15px 30px 0 0;
   }
 
   .pv-nav:hover {
@@ -23,13 +23,21 @@
       text-decoration: none;
   }
 
-  .pv-header,
-  .pv-footer,
-  .pv-title {
-      background-color: #3E2723;
-      padding: 20px 50px;
-      color: #DCEDC8;
-  }
+  .pv-header {
+    background-color: #3E2723;
+    padding: 0 50px;
+    color: #DCEDC8;
+}
+.pv-title {
+    background-color: #3E2723;
+    padding: 20px 50px 25px 50px;
+    color: #DCEDC8;
+}
+  .pv-footer {
+    background-color: #3E2723;
+    padding: 40px 50px;
+    color: #DCEDC8;
+}
 
   .blogcard {
       margin: 50px;
@@ -40,15 +48,12 @@
       background-color: #3E2723;
       padding: 5px 15px;
       color: #DCEDC8;
-      font-size: larger;
+      font-size: 14pt;
       font-weight: bold;
   }
 
   .blogcard-body {
       border: .3rem solid #3E2723;
-      /* background-color: #DCEDC8; */
       padding: 10px 15px;
       color: #3E2723;
-      /* font-size: larger; */
-      /* font-weight: bold; */
   }
