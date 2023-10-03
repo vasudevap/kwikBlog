@@ -4,7 +4,7 @@ const path = require('path');
 
 const { User, BlogPost } = require('../models');
 
-// GET All BlogPosts
+// GET / all BlogPosts
 router.get('/', async (req, res) => {
     // Get all BlogPosts and JOIN with user data
     BlogPost.findAll()
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         .catch((err) => res.status(400).json(err))
 });
 
-// GET User dashboard
+// GET /dashboard for User
 router.get('/dashboard', (req, res) => {
     // If the user is already logged in, show their blog posts
     if (req.session.userId) {
@@ -45,14 +45,37 @@ router.get('/dashboard', (req, res) => {
     }
 });
 
+// GET /login page
 router.get('/login', (req, res) => {
+
+    // if user is already logged in
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+      }
+
+    // create the login partial view
     res.render('login', {
-        loggedIn: req.session.loggedIn,
-        pagetitle: "login"
+        pagetitle: "kwikBlog",
+        boxTitle: 'Login',
+        boxButtonText: 'Login!',
+        boxSwapLink: '/signup',
+        boxSwapLinkText: 'Sign up instead'
     });
+
 });
 
-router.get('/logout', (req, res) => {
-    
-})
+// GET /signup page
+router.get('/signup', (req, res) => {
+
+    res.render('loginsignup', {
+        pagetitle: "kwikBlog",
+        boxTitle: 'Sign Up',
+        boxButtonText: 'Sign Up!',
+        boxSwapLink: '/login',
+        boxSwapLinkText: 'Login instead'
+    });
+
+});
+
 module.exports = router;
