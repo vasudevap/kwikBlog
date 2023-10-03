@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sess = {
-  secret: 'kwikBlog secret',
+  secret: process.env.SESS_SECRET,
   cookie: {
     maxAge: 300000,
     httpOnly: true,
