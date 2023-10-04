@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
             // Serialize data so the template can read it
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
             console.info(blogPosts);
-            res.render('homepage', {
+            res.render('blogs', {
                 blogPosts,
                 loggedIn: req.session.loggedIn,
                 pagetitle: "kwikBlog"
@@ -39,7 +39,7 @@ router.get('/dashboard', withAuth, (req, res) => {
         .then((userblogPostsFromDB) => {
             // Serialize data so the template can read it
             const userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            res.render('homepage', {
+            res.render('blogs', {
                 userblogPosts,
                 loggedIn: req.session.loggedIn,
                 pagetitle: "Dashboard"
@@ -80,4 +80,32 @@ router.get('/signup', (req, res) => {
 
 });
 
+router.get('/blogposts/:id', withAuth, async (req, res) => {
+
+    res.render('blogs', {
+        loggedIn: req.session.loggedIn,
+        pagetitle: "kwikBlog"
+    });
+    // Get all BlogPosts and JOIN with user data
+    // BlogPost.findAll({
+    //     // get authorname
+    //     include: [
+    //         {
+    //             model: User,
+    //             attributes: ['username'],
+    //         },
+    //     ],
+    // })
+    //     .then((blogPostsFromDB) => {
+    //         // Serialize data so the template can read it
+    //         const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
+    //         console.info(blogPosts);
+    //         res.render('homepage', {
+    //             blogPosts,
+    //             loggedIn: req.session.loggedIn,
+    //             pagetitle: "kwikBlog"
+    //         });
+    //     })
+    //     .catch((err) => res.status(400).json(err))
+});
 module.exports = router;
