@@ -42,12 +42,12 @@
   }
 
   .blogcard {
-      margin: 50px;
+      margin: 20px 40px 50px 40px;
   }
 
   .blogcard-header {
       border: .3rem solid #3E2723;
-      padding: 3px 15px;
+      padding: 2px 15px;
       background-color: #3E2723;
       color: #DCEDC8;
       display: flex;
