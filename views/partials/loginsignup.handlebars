@@ -2,17 +2,20 @@
     <div class="blogcard-header">{{boxTitle}}</div>
     <div class="blogcard-body">
         <form class="loginSignupForm {{formType}}">
-            <div>
+            {{!-- <div> --}}
                 <label for="inputUsername" class="form-label">Username</label>
                 <input type="text" class="form-control" id="inputUsername" aria-describedby="usernameHelp">
-                <div id="usernameHelp" class="form-text">Enter your username</div>
-            </div>
-            <div>
+                {{!--
+            </div> --}}
+            {{!-- <div> --}}
                 <label for="inputPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" id="inputPassword">
+                {{!--
+            </div> --}}
+            <div class="d-grid loginSignupBtn">
+                <button class="btn btn-secondary" type="submit">{{boxButtonText}}</button>
             </div>
-            <button type="submit" class="btn btn-primary">{{boxButtonText}}</button>
+            <p><a class="link-opacity-100 pv-link" href="{{boxSwapLink}}">{{boxSwapLinkText}}</a></p>
         </form>
-        <a href="{{boxSwapLink}}">{{boxSwapLinkText}}</a>
     </div>
 </div>

@@ -24,36 +24,71 @@
   }
 
   .pv-header {
-    background-color: #3E2723;
-    padding: 0 50px;
-    color: #DCEDC8;
-}
-.pv-title {
-    background-color: #3E2723;
-    padding: 20px 50px 25px 50px;
-    color: #DCEDC8;
-}
+      background-color: #3E2723;
+      padding: 0 50px;
+      color: #DCEDC8;
+  }
+
+  .pv-title {
+      background-color: #3E2723;
+      padding: 20px 50px 25px 50px;
+      color: #DCEDC8;
+  }
+
   .pv-footer {
-    background-color: #3E2723;
-    padding: 40px 50px;
-    color: #DCEDC8;
-}
+      background-color: #3E2723;
+      padding: 40px 50px;
+      color: #DCEDC8;
+  }
 
   .blogcard {
       margin: 50px;
   }
 
   .blogcard-header {
-      border: 1rem solid #3E2723;
+      border: .3rem solid #3E2723;
+      padding: 3px 15px;
       background-color: #3E2723;
-      padding: 5px 15px;
       color: #DCEDC8;
+      display: flex;
+      flex: 0 1 row;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .pv-posttitle {
       font-size: 14pt;
       font-weight: bold;
   }
 
+  .pv-postinfo {
+      font-size: 10pt;
+  }
+
   .blogcard-body {
       border: .3rem solid #3E2723;
-      padding: 10px 15px;
+      padding: 3px 15px;
       color: #3E2723;
+  }
+
+  html {
+      height: 100%;
+  }
+
+  body {
+      min-height: 100%;
+  }
+
+  .form-label, .loginSignupBtn {
+      margin-top: 10px;
+  }
+
+  .blogcard-body p {
+
+    margin: 5px 0 25px 0;
+  }
+
+  .pv-link:hover {
+    background-color: #55aaff;
+    color: white;
   }
