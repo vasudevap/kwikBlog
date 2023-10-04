@@ -58,9 +58,11 @@
       align-items: center;
   }
 
-  .pv-posttitle {
+  .pv-posttitle a {
       font-size: 14pt;
       font-weight: bold;
+      color: #DCEDC8;
+      text-decoration: none;
   }
 
   .pv-postinfo {
@@ -83,7 +85,7 @@
   }
 
   body {
-    background-color: #DCEDC8;
+      background-color: #DCEDC8;
   }
 
   .form-label,
