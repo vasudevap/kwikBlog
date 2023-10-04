@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
         .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            console.info(blogPosts);
             res.render('blogs', {
                 blogPosts,
                 loggedIn: req.session.loggedIn,
@@ -82,30 +81,55 @@ router.get('/signup', (req, res) => {
 
 router.get('/blogposts/:id', withAuth, async (req, res) => {
 
-    res.render('blogs', {
-        loggedIn: req.session.loggedIn,
-        pagetitle: "kwikBlog"
+    console.log(req.params.id);
+    // Get blogpost by id
+    const blogPostfromDB = await BlogPost.findByPk(req.params.id, {
+        // get authorname
+        include: [
+            {
+                model: User,
+                attributes: ['username'],
+            },
+        ],
     });
-    // Get all BlogPosts and JOIN with user data
-    // BlogPost.findAll({
-    //     // get authorname
-    //     include: [
-    //         {
-    //             model: User,
-    //             attributes: ['username'],
-    //         },
-    //     ],
-    // })
-    //     .then((blogPostsFromDB) => {
-    //         // Serialize data so the template can read it
-    //         const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
-    //         console.info(blogPosts);
-    //         res.render('homepage', {
-    //             blogPosts,
-    //             loggedIn: req.session.loggedIn,
-    //             pagetitle: "kwikBlog"
-    //         });
-    //     })
-    //     .catch((err) => res.status(400).json(err))
+
+    if(blogPostfromDB){
+        // Serialize data so the template can read it
+        const blogPost = blogPostfromDB.get({ plain: true });
+
+        console.log(blogPost);
+
+        res.render('blog', {
+            blogPost,
+            loggedIn: req.session.loggedIn,
+            pagetitle: "kwikBlog"
+        });
+    } else {
+        console.log(blogPostfromDB);
+    }
 });
+
+// Get all BlogPosts and JOIN with user data
+// BlogPost.findAll({
+//     // get authorname
+//     include: [
+//         {
+//             model: User,
+//             attributes: ['username'],
+//         },
+//     ],
+// })
+//     .then((blogPostsFromDB) => {
+//         // Serialize data so the template can read it
+//         const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
+//         console.info(blogPosts);
+//         res.render('homepage', {
+//             blogPosts,
+//             loggedIn: req.session.loggedIn,
+//             pagetitle: "kwikBlog"
+//         });
+//     })
+//     .catch((err) => res.status(400).json(err))
+// });
+
 module.exports = router;
