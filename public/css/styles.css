@@ -56,8 +56,10 @@
       flex: 0 1 row;
       justify-content: space-between;
       align-items: center;
+      min-height: 18pt;
   }
 
+  .pv-posttitle,
   .pv-posttitle a {
       font-size: 14pt;
       font-weight: bold;
@@ -71,7 +73,7 @@
 
   .blogcard-body {
       border: .3rem solid #3E2723;
-      padding: 3px 15px;
+      padding: 5px 15px;
       color: #3E2723;
   }
 
@@ -91,6 +93,7 @@
   .form-label,
   .loginSignupBtn {
       margin-top: 10px;
+      margin-bottom: 10px;
   }
 
   .blogcard-body p {
