@@ -7,10 +7,19 @@ const { User, BlogPost } = require('../models');
 // GET / all BlogPosts
 router.get('/', async (req, res) => {
     // Get all BlogPosts and JOIN with user data
-    BlogPost.findAll()
+    BlogPost.findAll({
+        // get authorname
+        include: [
+            {
+                model: User,
+                attributes: ['username'],
+            },
+        ],
+    })
         .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
+            console.info(blogPosts);
             res.render('homepage', {
                 blogPosts,
                 loggedIn: req.session.loggedIn,
@@ -36,7 +45,7 @@ router.get('/dashboard', (req, res) => {
                 res.render('dashboard', {
                     userblogPosts,
                     loggedIn: req.session.loggedIn,
-                    pagetitle: "dashboard"
+                    pagetitle: "Dashboard"
                 });
             })
             .catch((err) => res.status(400).json(err))
@@ -51,7 +60,7 @@ router.get('/login', (req, res) => {
     // if user is already logged in
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
-      }
+    }
 
     // create the login partial view
     res.render('login', {
