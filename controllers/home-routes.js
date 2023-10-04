@@ -28,32 +28,25 @@ router.get('/', async (req, res) => {
         })
         .catch((err) => res.status(400).json(err))
 });
-
 // GET /dashboard for User
-router.get('/dashboard', (req, res) => {
-    // If the user is already logged in, show their blog posts
-    if (req.session.loggedIn) {
-        // Get user's own BlogPosts 
-        BlogPost.findAll({
-            where: {
-                userId: req.session.userId
-            }
+router.get('/dashboard', withAuth, (req, res) => {
+    // Get user's own BlogPosts 
+    BlogPost.findAll({
+        where: {
+            userId: req.session.userId
+        }
+    })
+        .then((userblogPostsFromDB) => {
+            // Serialize data so the template can read it
+            const userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
+            res.render('homepage', {
+                userblogPosts,
+                loggedIn: req.session.loggedIn,
+                pagetitle: "Dashboard"
+            });
         })
-            .then((userblogPostsFromDB) => {
-                // Serialize data so the template can read it
-                const userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
-                res.render('dashboard', {
-                    userblogPosts,
-                    loggedIn: req.session.loggedIn,
-                    pagetitle: "Dashboard"
-                });
-            })
-            .catch((err) => res.status(400).json(err))
-    } else {
-        res.redirect('/login');
-    }
+        .catch((err) => res.status(400).json(err))
 });
-
 // GET /login page
 router.get('/login', (req, res) => {
 
@@ -73,7 +66,6 @@ router.get('/login', (req, res) => {
     });
 
 });
-
 // GET /signup page
 router.get('/signup', (req, res) => {
 
