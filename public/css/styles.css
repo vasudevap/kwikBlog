@@ -39,6 +39,10 @@
       background-color: #3E2723;
       padding: 40px 50px;
       color: #DCEDC8;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
   }
 
   .blogcard {
@@ -77,18 +81,20 @@
 
   body {
       min-height: 100%;
+      background-color: #DCEDC8;
   }
 
-  .form-label, .loginSignupBtn {
+  .form-label,
+  .loginSignupBtn {
       margin-top: 10px;
   }
 
   .blogcard-body p {
 
-    margin: 5px 0 25px 0;
+      margin: 5px 0 25px 0;
   }
 
   .pv-link:hover {
-    background-color: #55aaff;
-    color: white;
+      background-color: #55aaff;
+      color: white;
   }
