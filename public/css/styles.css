@@ -82,6 +82,10 @@
       background-color: #DCEDC8;
   }
 
+  body {
+    background-color: #DCEDC8;
+  }
+
   .form-label,
   .loginSignupBtn {
       margin-top: 10px;
