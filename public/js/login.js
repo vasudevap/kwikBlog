@@ -1,9 +1,7 @@
+// Login with username and password 
 const loginFormHandler = async (username, password) => {
 
   // Send a POST request to the API endpoint
-
-  console.log("ABOUT TO FETCH **************");
-
   const response = await fetch('/api/users/login', {
     method: 'POST',
     body: JSON.stringify({ username, password }),
@@ -17,8 +15,7 @@ const loginFormHandler = async (username, password) => {
     alert("Incorrect username or password");
   }
 }
-
-
+// Sign up with username and password
 const signupFormHandler = async (username, password) => {
 
   const response = await fetch('/api/users', {
@@ -34,7 +31,7 @@ const signupFormHandler = async (username, password) => {
   }
 
 }
-
+// Handle event to login or signup
 const loginSignupFormHandler = async (e) => {
   e.preventDefault();
 
@@ -44,11 +41,13 @@ const loginSignupFormHandler = async (e) => {
 
   if (username && password) {
 
+    // if request is to log in with existing credentials
     if (document.querySelector('.loginForm')) {
       console.log("login: " + username + " " + password);
       loginFormHandler(username, password);
     }
 
+    // if request is to sign up as a new user
     if (document.querySelector('.signupForm')) {
       console.log("signup: " + username + " " + password);
       signupFormHandler(username, password)
@@ -56,6 +55,7 @@ const loginSignupFormHandler = async (e) => {
   }
 }
 
+// listen for event on submit of form
 document
   .querySelector('.loginSignupForm')
   .addEventListener('submit', loginSignupFormHandler);
