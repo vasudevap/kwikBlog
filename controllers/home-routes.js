@@ -4,7 +4,7 @@ const path = require('path');
 
 const { User, BlogPost } = require('../models');
 
-// GET / all BlogPosts
+// GET / all BlogPosts for homepage
 router.get('/', async (req, res) => {
     // Get all BlogPosts and JOIN with user data
     BlogPost.findAll({
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
         })
         .catch((err) => res.status(400).json(err))
 });
-// GET /dashboard for User
+// GET /dashboard for User's posts
 router.get('/dashboard', withAuth, (req, res) => {
     // Get user's own BlogPosts 
     BlogPost.findAll({
@@ -54,7 +54,7 @@ router.get('/login', (req, res) => {
         res.redirect('/dashboard');
     }
 
-    // create the login partial view
+    //send data to handlebars to render login form
     res.render('login', {
         pagetitle: "kwikBlog",
         formType: 'loginForm',
@@ -68,6 +68,7 @@ router.get('/login', (req, res) => {
 // GET /signup page
 router.get('/signup', (req, res) => {
 
+    //send data to handlebars to render signpup form
     res.render('login', {
         pagetitle: "kwikBlog",
         formType: 'signupForm',
@@ -78,10 +79,9 @@ router.get('/signup', (req, res) => {
     });
 
 });
-
+// GET /blogpost/:id page for single post
 router.get('/blogposts/:id', withAuth, async (req, res) => {
 
-    console.log(req.params.id);
     // Get blogpost by id
     const blogPostfromDB = await BlogPost.findByPk(req.params.id, {
         // get authorname
@@ -93,43 +93,21 @@ router.get('/blogposts/:id', withAuth, async (req, res) => {
         ],
     });
 
-    if(blogPostfromDB){
+    if (blogPostfromDB) {
         // Serialize data so the template can read it
         const blogPost = blogPostfromDB.get({ plain: true });
-
-        console.log(blogPost);
-
+        // Send data to handlebars to render page
         res.render('blog', {
             blogPost,
             loggedIn: req.session.loggedIn,
+            userId: req.session.userId,
             pagetitle: "kwikBlog"
         });
     } else {
-        console.log(blogPostfromDB);
+        res.status(500).json('blog with id :' + req.params.id + ' was not found!');
     }
 });
 
-// Get all BlogPosts and JOIN with user data
-// BlogPost.findAll({
-//     // get authorname
-//     include: [
-//         {
-//             model: User,
-//             attributes: ['username'],
-//         },
-//     ],
-// })
-//     .then((blogPostsFromDB) => {
-//         // Serialize data so the template can read it
-//         const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
-//         console.info(blogPosts);
-//         res.render('homepage', {
-//             blogPosts,
-//             loggedIn: req.session.loggedIn,
-//             pagetitle: "kwikBlog"
-//         });
-//     })
-//     .catch((err) => res.status(400).json(err))
-// });
+
 
 module.exports = router;
