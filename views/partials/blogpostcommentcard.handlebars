@@ -1,7 +1,7 @@
 <div class="blogcard">
     <div class="blogcard-header">
         <div class="pv-posttitle">
-            {{blogPost.posttitle}}
+            {{blogPost.posttitle}} - {{blogPost.id}} - {{userId}}
         </div>
         <div class="pv-postinfo">Posted by {{user.username}} on {{blogPost.postdate}}
         </div>
@@ -19,6 +19,8 @@
             <div class="d-grid loginSignupBtn">
                 <button class="btn btn-secondary" type="submit">Submit</button>
             </div>
+            <input type="hidden" id="postId" name="postId" value="{{blogPost.id}}" />
+            <input type="hidden" id="userId" name="userId" value="{{userId}}" />
         </form>
     </div>
 </div>
