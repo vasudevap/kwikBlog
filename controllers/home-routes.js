@@ -63,7 +63,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         res.render('blogs', {
             userblogPosts,
             loggedIn: req.session.loggedIn,
-            pagetitle: "Dashboard",
+            pagetitle: "Your Dashboard",
             isDashboard: true,
             newPost: false,
         });
@@ -168,7 +168,7 @@ router.get('/addPost', withAuth, async (req, res) => {
     res.render('blogs', {
         loggedIn: req.session.loggedIn,
         userId: req.session.userId,
-        pagetitle: "Dashboard",
+        pagetitle: "Your Dashboard",
         isDashboard: true,
         newPost: true,
     });

@@ -5,13 +5,13 @@
 
         <form class="commentForm d-grid">
             <label for="inputPostTitle" class="d-grid form-label">Title</label>
-            <input class="d-grid loginSignupBtn inputPostTitle" type="text" id="inputPostTitle" name="inputPostTitle" />
+            <input class="d-grid loginSignupBtn inputPostTitle" type="text" id="inputPostTitle" name="inputPostTitle" value="{{posttitle}}"/>
             <label for="inputPostBody" class="form-label">Content</label>
-            <textarea class="d-grid form-control inputPostBody" id="inputPostBody" rows="3"></textarea>
+            <textarea class="d-grid form-control inputPostBody" id="inputPostBody" rows="3">{{postbody}}</textarea>
             <div class="d-grid loginSignupBtn">
                 <button class="btn btn-secondary addPostBtn" type="submit">Create</button>
             </div>
-            <input type="hidden" id="userId" class="userId" name="userId" value="{{userId}}" />
+            <input type="hidden" id="userId" class="userId" name="userId" value="{{user_Id}}" />
         </form>
     </div>
 </div>

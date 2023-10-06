@@ -15,12 +15,12 @@
         {{#if (more_than_one userblogPosts)}}
         {{#each userblogPosts as |blogpost|}}
         {{!-- display it --}}
-        {{>blogpostcard}}
+        {{>userblogpostcard}}
         {{/each}}
         {{else}}
         {{#each userblogPosts}}
         {{!-- display it --}}
-        {{>blogpostcard}}
+        {{>userblogpostcard}}
         {{/each}}
         {{/if}}
 
