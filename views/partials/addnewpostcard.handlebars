@@ -1,0 +1,19 @@
+<div class="blogcard d-flex flex-column p-2">
+    <div class="blogcard-header">Create New Post
+    </div>
+    <div class="blogcard-body">
+
+        <form class="commentForm d-grid">
+            <label for="inputPostTitle" class="d-grid form-label">Title</label>
+            <input class="d-grid loginSignupBtn inputPostTitle" type="text" id="inputPostTitle" name="inputPostTitle" />
+            <label for="inputPostBody" class="form-label">Content</label>
+            <textarea class="d-grid form-control inputPostBody" id="inputPostBody" rows="3"></textarea>
+            <div class="d-grid loginSignupBtn">
+                <button class="btn btn-secondary addPostBtn" type="submit">Submit</button>
+            </div>
+            <input type="hidden" id="userId" class="userId" name="userId" value="{{userId}}" />
+        </form>
+    </div>
+</div>
+
+<script src="/js/addPost.js"></script>

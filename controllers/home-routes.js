@@ -19,11 +19,12 @@ router.get('/', async (req, res) => {
         .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            if(blogPosts.length>1){
+            if (blogPosts.length > 1) {
                 res.render('blogs', {
                     blogPosts,
                     loggedIn: req.session.loggedIn,
                     pagetitle: "kwikBlog",
+                    // more than one blog posts found
                     isOne: false,
                 });
             } else {
@@ -31,34 +32,48 @@ router.get('/', async (req, res) => {
                     blogPosts,
                     loggedIn: req.session.loggedIn,
                     pagetitle: "kwikBlog",
+                    // only one blog post found
                     isOne: true,
                 });
             }
-            
+
         })
         .catch((err) => res.status(400).json(err))
 });
 // GET /dashboard for User's posts
-router.get('/dashboard', withAuth, (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     // Get user's own BlogPosts 
-    BlogPost.findAll({
-        where: {
-            userId: req.session.userId
-        }
-    })
-        .then((userblogPostsFromDB) => {
+    let userblogPosts = {};
+    try {
+        const userblogPostsFromDB = await BlogPost.findAll({
+            where: {
+                user_id: req.session.userId
+            }
+        });
+
+        if (userblogPostsFromDB) {
             // Serialize data so the template can read it
-            const userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            res.render('blogs', {
-                userblogPosts,
-                loggedIn: req.session.loggedIn,
-                pagetitle: "Dashboard",
-                isDashboard: true,
-                newPost: false,
-            });
-        })
-        .catch((err) => res.status(400).json(err))
-});
+            if (userblogPostsFromDB.length > 1) {
+                userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
+            } else {
+                userblogPosts = userblogPostsFromDB.get({ plain: true });
+            }
+        }
+
+        res.render('blogs', {
+            userblogPosts,
+            loggedIn: req.session.loggedIn,
+            pagetitle: "Dashboard",
+            isDashboard: true,
+            newPost: false,
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+}
+);
 // GET /login page
 router.get('/login', (req, res) => {
 
@@ -117,7 +132,7 @@ router.get('/blogposts/:id', withAuth, async (req, res) => {
                 if (commentFromDB) {
                     comments = commentFromDB.map((c) => c.get({ plain: true }));
 
-                    for(let i=0; i<comments.length; i++) {
+                    for (let i = 0; i < comments.length; i++) {
 
                         const commentAuthorFromDB = await User.findByPk(comments[i].user_id);
 
@@ -126,7 +141,7 @@ router.get('/blogposts/:id', withAuth, async (req, res) => {
                     }
                 }
             }
-        
+
             // Send data to handlebars to render page
             res.render('blogs', {
                 ...blogPost,
@@ -152,6 +167,7 @@ router.get('/addPost', withAuth, async (req, res) => {
 
     res.render('blogs', {
         loggedIn: req.session.loggedIn,
+        userId: req.session.userId,
         pagetitle: "Dashboard",
         isDashboard: true,
         newPost: true,
