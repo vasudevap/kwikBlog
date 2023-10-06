@@ -52,7 +52,9 @@ router.get('/dashboard', withAuth, (req, res) => {
             res.render('blogs', {
                 userblogPosts,
                 loggedIn: req.session.loggedIn,
-                pagetitle: "Dashboard"
+                pagetitle: "Dashboard",
+                isDashboard: true,
+                newPost: false,
             });
         })
         .catch((err) => res.status(400).json(err))
@@ -145,6 +147,15 @@ router.get('/blogposts/:id', withAuth, async (req, res) => {
 
 });
 
+// POST new post
+router.get('/addPost', withAuth, async (req, res) => {
 
+    res.render('blogs', {
+        loggedIn: req.session.loggedIn,
+        pagetitle: "Dashboard",
+        isDashboard: true,
+        newPost: true,
+    });
+})
 
 module.exports = router;

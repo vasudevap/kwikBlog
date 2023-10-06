@@ -1,7 +1,15 @@
 {{> pagetitle}}
-<div class="d-flex align-items-center flex-column" style="min-height: 60vh;">
+<div class="d-flex align-items-center flex-column" style="min-height: 60vh; min-width: 80vw;">
 
     <div class="p-2">
+        {{#if isDashboard}}
+
+        {{#if newPost}}
+        {{>addnewpostcard}}
+        {{/if}}
+
+        {{else}}
+
         {{#if isOne}}
         {{!-- if only 1 blogpost to show --}}
 
@@ -32,11 +40,15 @@
         {{/each}}
 
         {{/if}}
-    </div>
-    <div class="mt-auto p-2 ">
-        <button class="newPostBtn " type="button">New Post</button>
+
+        {{/if}}
+
     </div>
 
+    {{#if isDashboard}}
+    <div class="mt-auto p-1 ">
+        <button class="newPostBtn btn" type="button">+ New Post</button>
+    </div>
+    <script src="/js/newPost.js"></script>
+    {{/if}}
 </div>
-
-{{!-- {{#if isDashboard}} --}}

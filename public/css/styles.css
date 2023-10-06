@@ -45,6 +45,7 @@
 
   .blogcard {
       margin: 20px 40px 50px 40px;
+      min-width: 90vw;
   }
 
   .blogcard-header {
@@ -116,3 +117,9 @@
       color: white;
       /* align-items: flex-end; */
   }
+
+  .newPostBtn:hover {
+    background-color: white;
+    color: #3E2723;
+    /* align-items: flex-end; */
+}
