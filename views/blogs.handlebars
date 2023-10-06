@@ -1,6 +1,33 @@
 {{> pagetitle}}
+{{#if isOne}}
+
+<!-- Display one blog -->
+{{>blogpostcard}}
+
+{{#if (more_than_one comments)}}
+{{#each comments as |comment|}}
+{{!-- display it --}}
+{{>commentcard}}
+{{/each}}
+{{else}}
+{{#each comments}}
+{{>commentcard}}
+{{/each}}
+{{/if}}
+{{!-- {{#each comments as |comment|}} --}}
+{{>addcommentcard}}
+{{!-- {{/each}} --}}
+
+{{else}}
+
+{{!-- {{>addcommentcard}} --}}
+
+{{!-- {{/if}} --}}
+
 <!-- Loop over each blogPost object -->
 {{#each blogPosts as |blogpost|}}
-{{!-- Call partial to display blogpost card --}}
+{{!-- display it --}}
 {{>blogpostcard}}
 {{/each}}
+
+{{/if}}

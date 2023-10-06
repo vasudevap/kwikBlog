@@ -2,9 +2,9 @@ const router = require('express').Router();
 const withAuth = require('../utils/auth');
 const path = require('path');
 
-const { User, BlogPost } = require('../models');
+const { User, BlogPost, Comment } = require('../models');
 
-// GET / all BlogPosts for homepage
+// GET / all BlogPosts to render 'blogs'
 router.get('/', async (req, res) => {
     // Get all BlogPosts and JOIN with user data
     BlogPost.findAll({
@@ -19,11 +19,22 @@ router.get('/', async (req, res) => {
         .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
             const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            res.render('blogs', {
-                blogPosts,
-                loggedIn: req.session.loggedIn,
-                pagetitle: "kwikBlog"
-            });
+            if(blogPosts.length>1){
+                res.render('blogs', {
+                    blogPosts,
+                    loggedIn: req.session.loggedIn,
+                    pagetitle: "kwikBlog",
+                    isOne: false,
+                });
+            } else {
+                res.render('blogs', {
+                    blogPosts,
+                    loggedIn: req.session.loggedIn,
+                    pagetitle: "kwikBlog",
+                    isOne: true,
+                });
+            }
+            
         })
         .catch((err) => res.status(400).json(err))
 });
@@ -82,30 +93,57 @@ router.get('/signup', (req, res) => {
 // GET /blogpost/:id page for single post
 router.get('/blogposts/:id', withAuth, async (req, res) => {
 
-    // Get blogpost by id
-    const blogPostfromDB = await BlogPost.findByPk(req.params.id, {
-        // get authorname
-        include: [
-            {
-                model: User,
-                attributes: ['username'],
-            },
-        ],
-    });
+    let blogPost = {};
+    let postAuthor = {};
+    let comments = {};
 
-    if (blogPostfromDB) {
-        // Serialize data so the template can read it
-        const blogPost = blogPostfromDB.get({ plain: true });
-        // Send data to handlebars to render page
-        res.render('blog', {
-            blogPost,
-            loggedIn: req.session.loggedIn,
-            userId: req.session.userId,
-            pagetitle: "kwikBlog"
-        });
-    } else {
-        res.status(500).json('blog with id :' + req.params.id + ' was not found!');
+    try {
+        // Get blogpost by id
+        const blogPostFromDB = await BlogPost.findByPk(req.params.id);
+        if (blogPostFromDB) {
+            blogPost = blogPostFromDB.get({ plain: true });
+
+            const authorFromDB = await User.findByPk(blogPost.user_id);
+            if (authorFromDB) {
+                postAuthor = authorFromDB.get({ plain: true });
+
+                const commentFromDB = await Comment.findAll({
+                    where: {
+                        blogpost_id: blogPost.id,
+                    }
+                });
+                if (commentFromDB) {
+                    comments = commentFromDB.map((c) => c.get({ plain: true }));
+
+                    for(let i=0; i<comments.length; i++) {
+
+                        const commentAuthorFromDB = await User.findByPk(comments[i].user_id);
+
+                        const commentAuthorData = commentAuthorFromDB.get({ plain: true });
+                        comments[i].commentAuthor = commentAuthorData.username;
+                    }
+                }
+            }
+        
+            // Send data to handlebars to render page
+console.log(blogPost);
+            res.render('blogs', {
+                ...blogPost,
+                postAuthor,
+                comments,
+                loggedIn: req.session.loggedIn,
+                userId: req.session.userId,
+                pagetitle: "kwikBlog",
+                isOne: true,
+                inCommentMode: true,
+            });
+        } else {
+            res.status(500).json('blog with id :' + req.params.id + ' was not found!');
+        }
+    } catch (err) {
+        res.status(500).json(err);
     }
+
 });
 
 

@@ -7,4 +7,12 @@ module.exports = {
       new Date(date).getFullYear() + 5
     }`;
   },
+  isdefined: (value) => {
+    return value !== undefined;
+  },
+  more_than_one: (record) => {
+    console.log(record);
+    console.log(record.length);
+    return record.length-1; 
+  },
 };
