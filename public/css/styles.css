@@ -105,3 +105,8 @@
       background-color: #55aaff;
       color: white;
   }
+
+  .comment-text {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
