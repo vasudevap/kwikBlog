@@ -126,7 +126,6 @@ router.get('/blogposts/:id', withAuth, async (req, res) => {
             }
         
             // Send data to handlebars to render page
-console.log(blogPost);
             res.render('blogs', {
                 ...blogPost,
                 postAuthor,

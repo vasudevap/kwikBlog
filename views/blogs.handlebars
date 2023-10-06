@@ -1,33 +1,42 @@
 {{> pagetitle}}
-{{#if isOne}}
+<div class="d-flex align-items-center flex-column" style="min-height: 60vh;">
 
-<!-- Display one blog -->
-{{>blogpostcard}}
+    <div class="p-2">
+        {{#if isOne}}
+        {{!-- if only 1 blogpost to show --}}
 
-{{#if (more_than_one comments)}}
-{{#each comments as |comment|}}
-{{!-- display it --}}
-{{>commentcard}}
-{{/each}}
-{{else}}
-{{#each comments}}
-{{>commentcard}}
-{{/each}}
-{{/if}}
-{{!-- {{#each comments as |comment|}} --}}
-{{>addcommentcard}}
-{{!-- {{/each}} --}}
+        <!-- Display one blog -->
+        {{>blogpostcard}}
 
-{{else}}
+        {{#if (more_than_one comments)}}
+        {{#each comments as |comment|}}
+        {{!-- if many comments --}}
+        {{>commentcard}}
+        {{/each}}
+        {{else}}
+        {{#each comments}}
+        {{!-- if only 1 comment --}}
+        {{>commentcard}}
+        {{/each}}
+        {{/if}}
 
-{{!-- {{>addcommentcard}} --}}
+        {{>addcommentcard}}
 
-{{!-- {{/if}} --}}
+        {{else}}
+        {{!-- if more than 1 blogpost to show --}}
 
-<!-- Loop over each blogPost object -->
-{{#each blogPosts as |blogpost|}}
-{{!-- display it --}}
-{{>blogpostcard}}
-{{/each}}
+        <!-- Loop over each blogPost object -->
+        {{#each blogPosts as |blogpost|}}
+        {{!-- display it --}}
+        {{>blogpostcard}}
+        {{/each}}
 
-{{/if}}
+        {{/if}}
+    </div>
+    <div class="mt-auto p-2 ">
+        <button class="newPostBtn " type="button">New Post</button>
+    </div>
+
+</div>
+
+{{!-- {{#if isDashboard}} --}}
