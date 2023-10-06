@@ -123,3 +123,9 @@
     color: #3E2723;
     /* align-items: flex-end; */
 }
+
+.pv-collapsed-title a {
+    color: white;
+    text-decoration: none;
+    text-align:justify;
+}
