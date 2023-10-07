@@ -6,6 +6,11 @@
         {{#if isDashboard}}
         {{!-- draw the dashboard with own blogs or new post --}}
 
+        {{#if inUpdateMode}}
+        {{!-- for updating own blogpost show update form --}}
+        {{>updatepostcard}}
+        {{else}}
+
         {{!-- for writing comments - do not show own posts --}}
         {{#if newPost}}
         {{>addnewpostcard}}
@@ -13,16 +18,22 @@
 
         {{!-- not writing new post so show own blogs --}}
         {{#if (more_than_one userblogPosts)}}
+        {{!-- to show more than one blog --}}
         {{#each userblogPosts as |blogpost|}}
         {{!-- display it --}}
         {{>userblogpostcard}}
         {{/each}}
         {{else}}
+        {{!-- to show just one blog --}}
         {{#each userblogPosts}}
         {{!-- display it --}}
         {{>userblogpostcard}}
         {{/each}}
         {{/if}}
+        {{!-- showing own blogs logic ends here --}}
+
+        {{/if}}
+        {{!-- update own blogpost logic ends here --}}
 
         {{/if}}
         {{!-- finish drawing dashboad for user --}}

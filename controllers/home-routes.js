@@ -161,7 +161,32 @@ router.get('/blogposts/:id', withAuth, async (req, res) => {
     }
 
 });
+// GET /updatePost/:id for user's post
+router.get('/updatePost/:id', withAuth, async (req, res) => {
 
+    try {
+        // Get blogpost by id
+        const userPostFromDB = await BlogPost.findByPk(req.params.id);
+        if (userPostFromDB) {
+            const updatePost = userPostFromDB.get({ plain: true });
+
+            // Send data to handlebars to render page
+            res.render('blogs', {
+                ...updatePost,
+                loggedIn: req.session.loggedIn,
+                userId: req.session.userId,
+                pagetitle: "Your Dashboard",
+                isDashboard: true,
+                inUpdateMode: true,
+            });
+        } else {
+            res.status(500).json('blog with id :' + req.params.id + ' was not found!');
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+
+});
 // POST new post
 router.get('/addPost', withAuth, async (req, res) => {
 
