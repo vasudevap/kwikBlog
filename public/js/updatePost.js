@@ -3,17 +3,15 @@
 const handleUpdatePostBtn = async (e) => {
     e.preventDefault();
 
-    console.log("***** in update post ******");
     // get the title
     const blogTitle = document.getElementById('inputPostTitle');
     const blogBody = document.getElementById('inputPostBody');
     const postId = document.getElementById('postId');
-    console.log(blogTitle.value + " " +blogBody.value + " " + postId.value);
 
     try {
         // create post body and post
         const addedPost = await fetch('/api/updatePost', {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify({
                 posttitle: blogTitle.value,
                 postbody: blogBody.value,
@@ -22,7 +20,7 @@ const handleUpdatePostBtn = async (e) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
-        // document.location.replace('/dashboard');
+        document.location.replace('/dashboard');
 
     } catch (err) {
         console.log(err);
@@ -30,4 +28,29 @@ const handleUpdatePostBtn = async (e) => {
     }
 }
 
+const handleDeletePostBtn = async (e) => {
+    e.preventDefault();
+
+    console.log("***** in delete post ******");
+    // get the title
+    const postId = document.getElementById('postId');
+
+    try {
+        // create post body and post
+        const deletedPost = await fetch('/api/updatePost', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                post_id: postId.value,
+            }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        document.location.replace('/dashboard');
+
+    } catch (err) {
+        console.log(err);
+        alert("Error posting comment");
+    }
+}
 document.querySelector('.updatePostBtn').addEventListener('click', handleUpdatePostBtn);
+document.querySelector('.deletePostBtn').addEventListener('click', handleDeletePostBtn);
