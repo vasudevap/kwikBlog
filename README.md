@@ -35,8 +35,23 @@ kwikBlog Features:
 
 # LINKS
 
-* For the LIVE application URL located on Heroku, [click here](www.google.com)
+* For the LIVE application URL located on Heroku, [click here](https://kwikblog-400c42e17d5a.herokuapp.com/)
 * For the application source code located on GitHub repo, [click here](https://github.com/vasudevap/kwikBlog.git)
+
+# TECHNOLOGY STACK
+The technologies and frameworks employed to create kwikBlog are:
+1. Express.js
+2. MysqlDB
+3. Node.js
+Frameworks and Libraries used:
+1. Bootstrap CSS
+2. Handlebars templates
+3. Sequelize
+4. dotEnv
+5. bcrypt
+6. express-session
+7. connect-session-sequelize
+All the dependencies are available in the packag.json file.
 
 # INSTALLATION
 The live version of the app is located on Heroku and can be accessed via link in the [links](#links) section.
@@ -48,6 +63,7 @@ The source code is available on github (link in [links](#links) section).  Instr
     * ensure express is installed
     * ensure mysql is installed and running
     * ensure port 3001 is available
+    * ensure a file named ``.env`` is present with DB credientials
 
 * INSTALLATION:
     * download the source from github by cloning the repo locally
@@ -71,6 +87,29 @@ With the server running, navigate to the URL `localhost:3001` to launch the web 
 7. To delete a blog instead of updating, click the `Delete` button instead of the `Update` button
   
 # MOCKUP
+1. Homepage
+
+![Homepage](<./Assets/kwikBlog (0).png>)
+
+2. Login
+
+![Login Page](<./Assets/kwikBlog (1).png>)
+
+3. Dashboard - Add new post
+
+![Dashboard Add new post](<./Assets/kwikBlog (2).png>)
+
+4. Dashboard - View own posts
+
+![Dashboard User Posts](<./Assets/kwikBlog (6).png>)
+
+5. Add Comments
+
+![Dashboard Comment on Blog](<./Assets/kwikBlog (4).png>)
+
+6. View Comments on Homepage
+
+![Comments](<./Assets/kwikBlog (5).png>)
 
 # CONTRIBUTING
 More the merrier!  To get involved please message me at my [github](https://github.com/vasudevap)
