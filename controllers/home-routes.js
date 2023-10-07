@@ -14,11 +14,35 @@ router.get('/', async (req, res) => {
                 model: User,
                 attributes: ['username'],
             },
+            {
+                model: Comment,
+                attributes: ['commentbody', 'commentdate', 'user_id'],
+            }
         ],
     })
         .then((blogPostsFromDB) => {
             // Serialize data so the template can read it
-            const blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
+            let blogPosts = blogPostsFromDB.map((bp) => bp.get({ plain: true }));
+
+            // Get comment Author username via lookup in DB 
+
+            for (let i = 0; i < blogPosts.length; i++) {
+                for (let j = 0; j < blogPosts[i].comments.length; j++) {
+                    const commentAuthorId = blogPosts[i].comments[j].user_id;
+                    // console.log(commentAuthorId);
+
+                    // add commentauthor to it to comment object
+                    User.findByPk(commentAuthorId, {
+                        attributes: ['username'],
+                    })
+                        .then((commentAuthorFromDB) => {
+                            const commentAuthor = commentAuthorFromDB.get({ plain: true });
+                            blogPosts[i].comments[j].commentauthor = commentAuthor.username;
+                        })
+                        .catch((err) => console.log(err));
+                }
+            }
+
             if (blogPosts.length > 1) {
                 res.render('blogs', {
                     blogPosts,
@@ -44,29 +68,26 @@ router.get('/', async (req, res) => {
 router.get('/dashboard', withAuth, async (req, res) => {
     // Get user's own BlogPosts 
     let userblogPosts = {};
+    let userblogPostsFromDB = {};
     try {
-        const userblogPostsFromDB = await BlogPost.findAll({
+        userblogPostsFromDB = await BlogPost.findAll({
             where: {
                 user_id: req.session.userId
             }
         });
 
         if (userblogPostsFromDB) {
-            // Serialize data so the template can read it
-            if (userblogPostsFromDB.length > 1) {
-                userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
-            } else {
-                userblogPosts = userblogPostsFromDB.get({ plain: true });
-            }
-        }
+            userblogPosts = userblogPostsFromDB.map((bp) => bp.get({ plain: true }));
 
-        res.render('blogs', {
-            userblogPosts,
-            loggedIn: req.session.loggedIn,
-            pagetitle: "Your Dashboard",
-            isDashboard: true,
-            newPost: false,
-        });
+            res.render('blogs', {
+                userblogPosts,
+                loggedIn: req.session.loggedIn,
+                pagetitle: "Your Dashboard",
+                isDashboard: true,
+                newPost: false,
+            });
+
+        }
 
     } catch (err) {
         console.log(err);
