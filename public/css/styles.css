@@ -115,17 +115,15 @@
   .newPostBtn {
       background-color: #3E2723;
       color: white;
-      /* align-items: flex-end; */
   }
 
   .newPostBtn:hover {
-    background-color: white;
-    color: #3E2723;
-    /* align-items: flex-end; */
-}
+      background-color: white;
+      color: #3E2723;
+  }
 
-.pv-collapsed-title a {
-    color: white;
-    text-decoration: none;
-    text-align:justify;
-}
+  .pv-collapsed-title a {
+      color: white;
+      text-decoration: none;
+      text-align: justify;
+  }
