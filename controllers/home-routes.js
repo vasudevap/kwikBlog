@@ -29,7 +29,6 @@ router.get('/', async (req, res) => {
             for (let i = 0; i < blogPosts.length; i++) {
                 for (let j = 0; j < blogPosts[i].comments.length; j++) {
                     const commentAuthorId = blogPosts[i].comments[j].user_id;
-                    // console.log(commentAuthorId);
 
                     // add commentauthor to it to comment object
                     User.findByPk(commentAuthorId, {

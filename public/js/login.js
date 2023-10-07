@@ -43,13 +43,11 @@ const loginSignupFormHandler = async (e) => {
 
     // if request is to log in with existing credentials
     if (document.querySelector('.loginForm')) {
-      console.log("login: " + username + " " + password);
       loginFormHandler(username, password);
     }
 
     // if request is to sign up as a new user
     if (document.querySelector('.signupForm')) {
-      console.log("signup: " + username + " " + password);
       signupFormHandler(username, password)
     }
   }

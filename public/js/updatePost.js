@@ -31,7 +31,6 @@ const handleUpdatePostBtn = async (e) => {
 const handleDeletePostBtn = async (e) => {
     e.preventDefault();
 
-    console.log("***** in delete post ******");
     // get the title
     const postId = document.getElementById('postId');
 
