@@ -24,12 +24,14 @@ kwikBlog Features:
 
 # TABLE OF CONTENTS
 
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Contributing](#contributing)
-4. [Tests](#tests)
-5. [License](#license)
-6. [Questions](#questions)
+1. [Links](#links)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Mockup](#mockup)
+5. [Contributing](#contributing)
+6. [Tests](#tests)
+7. [License](#license)
+8. [Questions](#questions)
 
 # LINKS
 
@@ -68,6 +70,7 @@ With the server running, navigate to the URL `localhost:3001` to launch the web 
 6. To update a blog, click on your blog from the Dashboard and after updating, click the `Update` button
 7. To delete a blog instead of updating, click the `Delete` button instead of the `Update` button
   
+# MOCKUP
 
 # CONTRIBUTING
 More the merrier!  To get involved please message me at my [github](https://github.com/vasudevap)
