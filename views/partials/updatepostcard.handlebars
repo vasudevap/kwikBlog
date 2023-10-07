@@ -9,11 +9,12 @@
             <label for="inputPostBody" class="form-label">Content</label>
             <textarea class="d-grid form-control inputPostBody" id="inputPostBody" rows="3">{{postbody}}</textarea>
             <div class="d-grid loginSignupBtn">
-                <button class="btn btn-secondary addPostBtn" type="submit">Create</button>
+                <button class="btn btn-secondary updatePostBtn" type="submit">Update</button>
             </div>
-            <input type="hidden" id="userId" class="userId" name="userId" value="{{user_Id}}" />
+            <input type="hidden" id="userId" class="userId" name="userId" value="{{userId}}" />
+            <input type="hidden" id="postId" class="postId" name="postId" value="{{id}}" />
         </form>
     </div>
 </div>
 
-<script src="/js/addPost.js"></script>
+<script src="/js/updatePost.js"></script>
