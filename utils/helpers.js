@@ -11,8 +11,6 @@ module.exports = {
     return value !== undefined;
   },
   more_than_one: (record) => {
-    console.log(record);
-    console.log(record.length);
     return record.length-1; 
   },
 };
