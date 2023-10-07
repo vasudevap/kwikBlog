@@ -11,7 +11,7 @@
         {{>updatepostcard}}
         {{else}}
 
-        {{!-- for writing comments - do not show own posts --}}
+        {{!-- for new post --}}
         {{#if newPost}}
         {{>addnewpostcard}}
         {{else}}
@@ -47,7 +47,7 @@
         <!-- Display one blog -->
         {{>blogpostcard}}
 
-        {{!-- if many blogposts to show --}}
+        {{!-- if many comments to show --}}
         {{#if (more_than_one comments)}}
         {{#each comments as |comment|}}
         {{!-- if many comments --}}
@@ -63,12 +63,30 @@
         {{>addcommentcard}}
 
         {{else}}
-        {{!-- if more than 1 blogpost to show --}}
+        {{!-- if more than 1 blogpost to show on homepage --}}
 
         <!-- Loop over each blogPost object -->
         {{#each blogPosts as |blogpost|}}
         {{!-- display it --}}
         {{>blogpostcard}}
+        
+        {{!-- for this blog (of many), show its comments --}}
+        {{#if (more_than_one comments)}}
+        {{#each comments as |comment|}}
+        {{!-- if many comments for this blogpost --}}
+        {{>commentcard}}
+        {{/each}}
+        {{!-- finish showing many comment for many blogposts on homepage --}}
+        {{else}}
+        {{#each comments}}
+        {{!-- if only 1 comment for this blogp (of many) --}}
+        {{>commentcard}}
+        {{/each}}
+        {{!-- finish showing 1 comment for many blogposts on homepage --}}
+
+        {{/if}}
+        {{!-- finish showing for many blogposts on homepage--}}
+
         {{/each}}
 
         {{/if}}
@@ -82,5 +100,9 @@
         <button class="newPostBtn btn" type="button">+ New Post</button>
     </div>
     <script src="/js/newPost.js"></script>
+    {{/if}}
+
+    {{#if (isdefined comments)}}
+    <script src="/js/comment.js"></script>
     {{/if}}
 </div>
