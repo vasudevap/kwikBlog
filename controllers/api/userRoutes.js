@@ -4,10 +4,8 @@ const { User } = require('../../models');
 // add new user registeration and create a session
 router.post('/', async (req, res) => {
   try {
-    console.log(req.body);
     const userData = await User.create(req.body);
 
-    console.log(userData);
     req.session.save(() => {
       req.session.userId = userData.id;
       req.session.loggedIn = true;
