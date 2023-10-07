@@ -1,0 +1,7 @@
+.DS_Store
+ProjREADME.md
+node_modules
+package-lock.json
+Assets
+.env
+starterREADME.md
